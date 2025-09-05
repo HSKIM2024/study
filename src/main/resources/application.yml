@@ -1,16 +1,35 @@
+#spring:
+#  application:
+#    name: study
+#  datasource:
+#    url: jdbc:h2:mem:studydb;MODE=MySQL;DB_CLOSE_DELAY=-1
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate.format_sql: true
+#  h2:
+#    console:
+#      enabled: true
+
 spring:
   application:
     name: study
   datasource:
-    url: jdbc:h2:mem:studydb;MODE=MySQL;DB_CLOSE_DELAY=-1
-    driverClassName: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/study?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    driverClassName: com.mysql.cj.jdbc.Driver
     username: sa
     password:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update # 기존 스키마를 사용하면 validate, 개발 중 생성은 update/create
     properties:
-      hibernate.format_sql: true
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      format_sql: true
+      jdbc.time_zone: UTC
   h2:
     console:
       enabled: true
